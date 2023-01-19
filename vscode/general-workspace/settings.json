@@ -1,0 +1,77 @@
+{
+"cmake.configureOnOpen": true,
+    "explorer.confirmDelete": false,
+    "editor.tabSize": 2,
+    "editor.fontFamily": "'DroidSansMono NFM', 'monospace', monospace",
+    "C_Cpp.clang_format_fallbackStyle": "llvm",
+    "C_Cpp.default.intelliSenseMode": "clang-x86",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "cmake.setBuildTypeOnMultiConfig": true,
+    "cmake.defaultVariants": {
+        "buildType": {
+            "default": "debug",
+            "description": "The build type.",
+            "choices": {
+                "debug": {
+                    "short": "debug",
+                    "long": "Disable optimizations - include debug information.",
+                    "buildType": "debug"
+                },
+                "release": {
+                    "short": "release",
+                    "long": "Optimize for speed - exclude debug information.",
+                    "buildType": "release"
+                },
+                "minsize": {
+                    "short": "MinSizeRel",
+                    "long": "Optimize for smallest binary size - exclude debug information.",
+                    "buildType": "MinSizeRel"
+                },
+                "reldeb": {
+                    "short": "RelWithDebInfo",
+                    "long": "Optimize for speed - include debug information.",
+                    "buildType": "RelWithDebInfo"
+                }
+            }
+        }
+    },
+    "terminal.integrated.inheritEnv": false,
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        },
+        "python3-repl": {
+            "args": ["-q"],
+            "path": "python3"
+        }
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "redhat.telemetry.enabled": true,
+    "files.associations": {
+        "*.ntl":"html"
+    },
+    "files.trimTrailingWhitespace": true,
+    "python.linting.enabled": true,
+    "python.linting.banditEnabled": true,
+    "python.linting.banditPath": "${env:HOME}/.local/bin/bandit",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintPath": "${env:HOME}/.local/bin/pylint",
+    "python.linting.mypyPath": "${env:HOME}/.local/bin/mypy",
+    "python.linting.lintOnSave": true,
+    "python.formatting.blackPath": "${env:HOME}/.local/bin/black",
+    "python.formatting.provider": "black",
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "basic",
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    }
+}

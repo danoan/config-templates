@@ -1,0 +1,81 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "./dev/clean/clean.sh",
+      "args": [],
+      "isBackground": false,
+      "options": {"cwd": "${workspaceFolder}"},
+      "label": "Clean",
+      "group": {
+          "kind": "test",
+          "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "command": "./dev/extract-sdist/extract-sdist.sh",
+      "args": [],
+      "isBackground": false,
+      "options": {"cwd": "${workspaceFolder}"},
+      "label": "Export package",
+      "dependsOn":["Pre-packaging suite"],
+      "group": {
+          "kind": "test",
+          "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "command": "tox",
+      "args": ["-e","docsdev"],
+      "isBackground": false,
+      "options": {"cwd": "${workspaceFolder}"},
+      "label": "Build documentation (dev)",
+      "group": {
+          "kind": "test",
+          "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "command": "tox",
+      "args": ["-e","docs"],
+      "isBackground": false,
+      "options": {"cwd": "${workspaceFolder}"},
+      "label": "Build documentation",
+      "group": {
+          "kind": "test",
+          "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "command": "tox",
+      "args": ["-e","testenv"],
+      "isBackground": false,
+      "options": {"cwd": "${workspaceFolder}"},
+      "label": "Run tests",
+      "group": {
+          "kind": "test",
+          "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "command": "tox",
+      "args": ["-e","format, typecheck, testenv, docs"],
+      "isBackground": false,
+      "options": {"cwd": "${workspaceFolder}"},
+      "label": "Pre-packaging suite",
+      "dependsOn":"Clean",
+      "group": {
+          "kind": "test",
+          "isDefault": true
+      }
+    }
+  ]
+}
