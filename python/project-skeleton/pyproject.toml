@@ -22,12 +22,19 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = ["dataclasses", "toml","typing_extensions"] 
+dependencies = ["dataclasses", 
+"toml", 
+"typing_extensions", 
+"quick_notes @ http://pypi-server.barriguinhas.fr/packages/quick_notes-0.0.1-py3-none-any.whl#md5=a32d461fe63370bd8d385e4be375d15b", 
+"journal_manager @ file:///home/user/packages/journal_manager-0.0.1-py3-none-any.whl"] 
 
 [project.urls]
 Documentation = "https://github.com/danoan/toml-dataclass#readme"
 Issues = "https://github.com/danoan/toml-dataclass/issues"
 Source = "https://github.com/danoan/toml-dataclass"
+
+[project.scripts]
+toml-dataclass = "danoan.toml_dataclass.cli:main"
 
 
 # -------------------- build backend --------------------
@@ -39,6 +46,9 @@ include-package-data = true
 where = ["src"]
 include = ["danoan*"]
 namespaces = true 
+
+[tools.setuptools.package-data]
+"danoan.toml_dataclass.templates"=["*.txt"]
 
 
 # -------------------- code test --------------------
