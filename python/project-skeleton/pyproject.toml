@@ -38,7 +38,7 @@ toml-dataclass = "danoan.toml_dataclass.cli:main"
 
 
 # -------------------- build backend --------------------
-[tools.setuptools]
+[tool.setuptools]
 include-package-data = true
 
 
@@ -47,7 +47,7 @@ where = ["src"]
 include = ["danoan*"]
 namespaces = true 
 
-[tools.setuptools.package-data]
+[tool.setuptools.package-data]
 "danoan.toml_dataclass.templates"=["*.txt"]
 
 
