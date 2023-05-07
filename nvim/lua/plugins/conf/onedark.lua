@@ -1,7 +1,9 @@
 local M = {}
 
 function M.setup ()
-    require('onedark').setup()
+    require('onedark').setup( {
+        style='deep',
+    } )
     vim.cmd[[colorscheme onedark]]
     vim.cmd[[highlight IncSearch guibg=#135564 guifg=white]]
     vim.cmd[[highlight Search guibg=#135564 guifg=white]]
@@ -10,4 +12,7 @@ function M.setup ()
     vim.cmd[[hi default LspCxxHlGroupMemberVariable ctermfg=White guifg=#F16E77]]
 end
 
+M.setup()
+
 return M
+

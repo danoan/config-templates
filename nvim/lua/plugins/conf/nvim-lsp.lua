@@ -1,6 +1,6 @@
 local M = {}
 
-local utils = require('utils')
+local utils = require('core.utils')
 local keymap = vim.keymap
 
 function M.get_capabilities()
@@ -35,7 +35,7 @@ end
 
 function M.nvim_lsp_installer_setup ()
     local lsp_installer = require("nvim-lsp-installer")
-    local lsputils = require('plugins.nvim-lsp')
+    local lsputils = require('plugins.conf.nvim-lsp')
 
     -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
     -- or if the server is already installed).
@@ -64,11 +64,11 @@ function M.nvim_lsp_installer_setup ()
                     },
                 },
             }
-        elseif server.name == 'clangd' and utils.file_exists("/mnt/filer-a-7/disk1/koudai/clang-terrier/latest/bin/clangd") then
+        elseif server.name == 'clangd'  then
             opts = {
                 capabilities = lsputils.get_capabilities(),
-                -- cmd = {"/mnt/filer-a-7/disk1/koudai/clang-terrier/latest/bin/clangd"},
-                cmd = {"/mnt/filer-a-7/disk1/koudai/clang-terrier/release-candidate/bin/clangd"},
+                cmd = { "clangd"},
+                single_file_support = {true}
             }
         else
             opts = {
@@ -85,16 +85,6 @@ end
 
 function M.setup ()
     local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-    keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.definition()<CR>')
-    keymap.set('n', 'gh',  '<cmd>lua vim.lsp.buf.hover()<CR>')
-    keymap.set('n', 'gi',  '<cmd>lua vim.lsp.buf.implementation()<CR>')
-    keymap.set('n', 'gs',  '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-    keymap.set('n', '1gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-    keymap.set('n', 'gr',  '<cmd>lua vim.lsp.buf.references()<CR>')
-    keymap.set('n', 'g0',  '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-    keymap.set('n', 'gW',  '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-    keymap.set('n', 'gd',  '<cmd>lua vim.lsp.buf.declaration()<CR>')
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -126,4 +116,7 @@ function M.setup ()
     vim.g.diagnostic_enable_virtual_text = 0
 end
 
+M.setup()
+
 return M
+

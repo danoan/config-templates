@@ -1,3 +1,6 @@
+-- Ensure that leader is reset
+require("core.options")
+
 local fn = vim.fn
 local keymap = vim.keymap
 
@@ -92,11 +95,14 @@ keymap.set('v', '<leader>y', '"+y')
 keymap.set('n', '<leader>y', '"+y')
 keymap.set('n', '<leader>p', 'o<esc>"+gp')
 
--- Align blocks of texte and keep them selected
+-- Align blocks of text and keep them selected
 keymap.set('v', '<', '<gv')
 keymap.set('v', '>', '>gv')
 
+-- Open the next buffer in the current window
 keymap.set('n', '<Leader>l', '<cmd>bn<CR>')
+
+-- Open the previous buffer in the current window
 keymap.set('n', '<Leader>h', '<cmd>bp<CR>')
 
 -- Close the current buffer and move to the previous one
@@ -145,4 +151,66 @@ keymap.set('n', '<leader>th','<cmd>split<cr><cmd>term<cr>')
 --Is not working. Need to discover how. Doing manually works.
 -- keymap.set('v', '<leader>|',"<cmd>'<,'>EasyAlign*|<cr>")
 -- vim.cmd('au FileType markdown vmap <Leader>| :EasyAlign*|<Enter>')
+
+--neovim/nvim-lsp
+keymap.set('n', 'gD',     '<cmd>lua vim.lsp.buf.definition()<CR>')
+keymap.set('n', 'gh',     '<cmd>lua vim.lsp.buf.hover()<CR>')
+keymap.set('n', 'gi',     '<cmd>lua vim.lsp.buf.implementation()<CR>')
+keymap.set('n', 'gs',     '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+keymap.set('n', '1gD',    '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+keymap.set('n', 'gr',     '<cmd>lua vim.lsp.buf.references()<CR>')
+keymap.set('n', 'g0',     '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+keymap.set('n', 'gW',     '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
+keymap.set('n', 'gd',     '<cmd>lua vim.lsp.buf.declaration()<CR>')
+
+--junegunn/fzf
+keymap.set('n', '<leader>p', "<cmd>lua require('fzf-lua').files({ cwd = '~/Projects'})<CR>")
+keymap.set('n', '<leader>~', "<cmd>lua require('fzf-lua').files({ cwd = '~/'})<CR>")
+keymap.set('n', '<leader>o', "<cmd>lua require('fzf-lua').files()<CR>")
+keymap.set('n', '<leader>O', "<cmd>lua require('fzf-lua').grep()<CR>")
+keymap.set('n', '<leader>i', "<cmd>lua require('fzf-lua').grep({search = ''})<CR>")
+keymap.set('n', '<leader>I', "<cmd>lua require('fzf-lua').live_grep()<CR>")
+keymap.set('n', '<leader>s', "<cmd>lua require('fzf-lua').blines()<CR>")
+keymap.set('n', '<leader>x', "<cmd>lua require('fzf-lua').commands()<CR>")
+keymap.set('n', '<c-x>h', "<cmd>lua require('fzf-lua').help_tags()<CR>")
+keymap.set('n', '<leader>us', "<cmd>lua require('fzf-lua').git_status()<CR>")
+keymap.set('n', ',', "<cmd>lua require('fzf-lua').buffers()<CR>")
+keymap.set('n', 'z=', "<cmd>lua require('fzf-lua').spell_suggest()<CR>")
+
+--christoomey/vim-tmux-navigator
+keymap.set('n', '<m-h>', '<cmd>TmuxNavigateLeft<cr>')
+keymap.set('n', '<m-j>', '<cmd>TmuxNavigateDown<cr>')
+keymap.set('n', '<m-k>', '<cmd>TmuxNavigateUp<cr>')
+keymap.set('n', '<m-l>', '<cmd>TmuxNavigateRight<cr>')
+keymap.set('n', '<m-\\>', '<cmd>TmuxNavigatePrevious<cr>')
+
+keymap.set('t', '<m-h>', '<C-\\><C-n><cmd>TmuxNavigateLeft<cr>')
+keymap.set('t', '<m-j>', '<C-\\><C-n><cmd>TmuxNavigateDown<cr>')
+keymap.set('t', '<m-k>', '<C-\\><C-n><cmd>TmuxNavigateUp<cr>')
+keymap.set('t', '<m-l>', '<C-\\><C-n><cmd>TmuxNavigateRight<cr>')
+keymap.set('t', '<m-\\>', '<C-\\><C-n><cmd>TmuxNavigatePrevious<cr>')
+
+--L3MON4D3/luasnip
+vim.keymap.set('i', '<c-c>', 
+    function ()
+       if require('luasnip').expand_or_jumpable() == true then
+           return '<Plug>luasnip-expand-or-jump'
+       else
+           return '<c-c>'
+       end
+    end
+)
+
+--tpope/vim-fugitive
+keymap.set('n', '<Leader>gs', '<cmd>vertical botright Gstatus<CR>')
+
+
+--majutsushi/tagbar
+keymap.set('n', '<F8>', '<cmd>TagbarToggle<CR>') -- Opens a tagbar on the right side
+
+--kyazdani42/nvim-tree.lua
+keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<CR>')
+
+--Copy path of the current file open in the buffer to the unamed register
+keymap.set('n','<C-D>c', '<cmd>let @" = expand("%:p")<cr>')
 

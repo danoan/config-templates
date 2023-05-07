@@ -30,3 +30,6 @@ end
 vim.cmd[[ command! InsertBashHeader call v:lua.InsertBashHeader() ]]
 vim.cmd[[ command! -nargs=1 InsertCommentHeader call v:lua.InsertCommentHeader(<f-args>)]]
 
+-- Thumbs Uo and Thumbs Down
+vim.cmd[[ command! ThumbsDown :norm i👎<esc> ]]
+vim.cmd[[ command! ThumbsUp :norm i👍<esc> ]]

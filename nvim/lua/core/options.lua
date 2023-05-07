@@ -47,6 +47,8 @@ vim.opt.runtimepath = vim.opt.runtimepath + '~/.config/nvim/my-snippets/'
 -- set this as default rather than falling back to plaintext
 vim.g.tex_flavor = 'latex'
 
+vim.g.python3_host_prog = '/home/daniel/.local/venv/nvim/bin/python'
+
 if vim.fn.executable('rg') then
     vim.g.grepprg='rg --vimgrep --no-heading --smart-case'
 end

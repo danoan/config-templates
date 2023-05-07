@@ -1,4 +1,4 @@
-local utils = require('utils')
+local utils = require('core.utils')
 local fn = vim.fn
 
 vim.cmd[[au TermOpen * setlocal nonumber norelativenumber]]
@@ -7,17 +7,13 @@ vim.cmd[[au TermOpen * normal i]]
 
 vim.cmd[[ au BufNewFile,BufRead CMakeLists.txt set filetype=cmake ]]
 
-
-vim.cmd[[ command! ThumbsDown :norm i👎<esc> ]]
-vim.cmd[[ command! ThumbsUp :norm i👍<esc> ]]
-
 -- Auto-source the nvim config when written
 vim.cmd[[ autocmd! BufWritePost $MYVIMRC :source $MYVIMRC ]]
 
 
 -- Used for filetype specific editing
 vim.cmd [[ autocmd! FileType tex,mail,vimwiki,markdown set spell ]]
-vim.cmd [[ autocmd! FileType vimwiki,tex,mail,markdown set spelllang=en_gb,fr,es ]]
+vim.cmd [[ autocmd! FileType vimwiki,tex,mail,markdown set spelllang=en_us,fr,pt_br,it ]]
 vim.cmd [[ autocmd! FileType tex set iskeyword+=:,- ]]
 
 -- Open the help buffer as a right split
@@ -42,3 +38,10 @@ utils.create_augroup('git_rebase', {
     'FileType gitrebase %s/^pick \\([a-z0-9]\\+\\) drop! /drop \1 /e',
 })
 -- }}}
+
+-- Remove trailing lines on saving
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*.yml", "*.sh", "*.json" },
+  command = [[%s/\s\+$//e]],
+})
+
