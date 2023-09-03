@@ -1,4 +1,8 @@
-local utils = require('core.utils')
+-- Autocmds are automatically loaded on the VeryLazy event
+-- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+-- Add any additional autocmds here
+
+local utils = require('config.utils')
 local fn = vim.fn
 
 vim.cmd[[au TermOpen * setlocal nonumber norelativenumber]]
