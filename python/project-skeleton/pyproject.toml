@@ -106,6 +106,7 @@ pretty = true
 namespace_packages = true
 check_untyped_defs = true
 ignore_missing_imports = true # libraries without py.typed marker raises an error if this is set to false
-mypy_path = "test" # Such that conftest is imported correctly in test files without errors
+mypy_path = "src:test" # Such that conftest is imported correctly in test files without errors
+explicit_package_bases = true # To solve import conflicts with mypy
 
 
