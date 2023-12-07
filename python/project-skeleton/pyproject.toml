@@ -90,7 +90,7 @@ source = [
 show_missing = true
 skip_covered = true
 omit = []
-
+fail_under = 90 # This will raise an error if the test coverage is below 90%
 
 # -------------------- code formatting --------------------
 [tool.black]
