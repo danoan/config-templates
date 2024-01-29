@@ -2,8 +2,10 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- Ensure that leader is reset
-require("config.options")
+-- Ensure that leader is reset. Edit: This should be actually commented out.
+-- Internally, Lazyvim takes care to import this file. Importing manually lead
+-- to errors, e.g. custom options being ignored.
+-- require("config.options")
 
 local fn = vim.fn
 local keymap = vim.keymap
