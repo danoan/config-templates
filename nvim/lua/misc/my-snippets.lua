@@ -52,9 +52,28 @@ function HighlightCharacter(name, format)
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 end
 
+function _ToggleForceWrap()
+	local temp = vim.opt.formatexpr
+	local force_wrap = false
+
+	function toggle()
+		force_wrap = not force_wrap
+		if force_wrap then
+			vim.opt.formatexpr = ""
+		else
+			vim.opt.formatexpr = temp
+		end
+	end
+
+	return toggle
+end
+
+ToggleForceWrap = _ToggleForceWrap()
+
 vim.cmd([[ command! InsertBashHeader call v:lua.InsertBashHeader() ]])
 vim.cmd([[ command! -nargs=1 InsertCommentHeader call v:lua.InsertCommentHeader(<f-args>)]])
 vim.cmd([[ command! -nargs=* HighlightCharacter call v:lua.HighlightCharacter(<f-args>)]])
+vim.cmd([[ command! ToggleForceWrap call v:lua.ToggleForceWrap() ]])
 
 -- Thumbs Uo and Thumbs Down
 vim.cmd([[ command! ThumbsDown :norm i👎<esc> ]])

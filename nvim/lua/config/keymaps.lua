@@ -80,3 +80,4 @@ keymap.set("n", "<Leader>a", "<cmd>noh<CR>", { desc = "Turn off term highlight" 
 -- Daniel's Keys
 keymap.set("n", "<C-D>c", '<cmd>let @" = expand("%:p")<cr>', { desc = "Copy current file path" })
 keymap.set("n", "<C-D>i", "<cmd>e ~/.config/nvim/init.lua<cr>", { desc = "Open main init.lua" })
+keymap.set("n", "<C-D>w", "<cmd>ToggleForceWrap<cr>", { desc = "Temporarily ignore formatexpr" })
