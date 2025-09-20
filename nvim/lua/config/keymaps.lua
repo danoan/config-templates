@@ -2,11 +2,6 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- Ensure that leader is reset. Edit: This should be actually commented out.
--- Internally, Lazyvim takes care to import this file. Importing manually lead
--- to errors, e.g. custom options being ignored.
--- require("config.options")
-
 local fn = vim.fn
 local keymap = vim.keymap
 
@@ -29,22 +24,22 @@ keymap.set("n", "<Leader>l", "<cmd>bn<CR>", { desc = "Next buffer" })
 keymap.set("n", "<Leader>h", "<cmd>bp<CR>", { desc = "Previous buffer" })
 keymap.set("n", "<Leader>q", "<cmd>bp <BAR> bd #<CR>", { desc = "Close buffer" })
 keymap.set("n", "<Leader>fd", function()
-	vim.cmd("lcd %:h")
-	local new_dir = vim.fn.getcwd()
-	require("notify")(
-		string.format("Working directory has changed to: %s", new_dir),
-		"info",
-		{ title = "Work directory change" }
-	)
+  vim.cmd("lcd %:h")
+  local new_dir = vim.fn.getcwd()
+  require("notify")(
+    string.format("Working directory has changed to: %s", new_dir),
+    "info",
+    { title = "Work directory change" }
+  )
 end, { desc = "Matches working directory with current buffer" })
 keymap.set("n", "<Leader>fg", function()
-	vim.cmd("lcd -")
-	local new_dir = vim.fn.getcwd()
-	require("notify")(
-		string.format("Switch to previous directory: %s", new_dir),
-		"info",
-		{ title = "Work directory change" }
-	)
+  vim.cmd("lcd -")
+  local new_dir = vim.fn.getcwd()
+  require("notify")(
+    string.format("Switch to previous directory: %s", new_dir),
+    "info",
+    { title = "Work directory change" }
+  )
 end, { desc = "Matches working directory with current buffer" })
 
 -- Pane navigation
