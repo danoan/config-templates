@@ -26,7 +26,7 @@ keymap.set("n", "<Leader>q", "<cmd>bp <BAR> bd #<CR>", { desc = "Close buffer" }
 keymap.set("n", "<Leader>fd", function()
   vim.cmd("lcd %:h")
   local new_dir = vim.fn.getcwd()
-  require("notify")(
+  vim.notify(
     string.format("Working directory has changed to: %s", new_dir),
     "info",
     { title = "Work directory change" }
@@ -35,11 +35,7 @@ end, { desc = "Matches working directory with current buffer" })
 keymap.set("n", "<Leader>fg", function()
   vim.cmd("lcd -")
   local new_dir = vim.fn.getcwd()
-  require("notify")(
-    string.format("Switch to previous directory: %s", new_dir),
-    "info",
-    { title = "Work directory change" }
-  )
+  vim.notify(string.format("Switch to previous directory: %s", new_dir), "info", { title = "Work directory change" })
 end, { desc = "Matches working directory with current buffer" })
 
 -- Pane navigation
