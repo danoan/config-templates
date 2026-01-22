@@ -72,6 +72,9 @@ keymap.set("v", "<c-y>", "7<c-y>", { desc = "Smooth page up" })
 
 keymap.set("n", "<Leader>a", "<cmd>noh<CR>", { desc = "Turn off term highlight" })
 
+-- Terminal mode
+keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { noremap = true }) -- Exit terminal mode
+
 -- Daniel's Keys
 keymap.set("n", "<C-D>c", '<cmd>let @" = expand("%:p")<cr>', { desc = "Copy current file path" })
 keymap.set("n", "<C-D>i", "<cmd>e ~/.config/nvim/init.lua<cr>", { desc = "Open main init.lua" })

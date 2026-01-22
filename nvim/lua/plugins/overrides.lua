@@ -38,6 +38,13 @@ return {
         end,
         desc = "Find files from the ~/Projects",
       },
+      {
+        "<leader>fF",
+        function()
+          require("telescope.builtin").find_files({ cwd = vim.fn.getcwd(), follow = true })
+        end,
+        desc = "Find Files (cwd - follow)",
+      },
     },
   },
 }
